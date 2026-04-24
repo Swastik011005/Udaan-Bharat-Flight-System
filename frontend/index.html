@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Udaan Bharat — Fly India</title>
+<link href="https://fonts.googleapis.com/css2?family=Yatra+One&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#002395;--navy-d:#001a6e;--navy-m:#0033cc;
+  --saffron:#FF9933;--green-india:#138808;--sky:#0EA5E9;
+  --text:#111827;--muted:#6B7280;--border:#E5E7EB;
+  --ibg:#F9FAFB;--iborder:#D1D5DB;
+}
+html,body{
+  height:100%;
+  margin:0;
+  padding:0;
+  font-family:'DM Sans',sans-serif;
+  overflow-x:hidden;
+  background:transparent;
+}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:62px;display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;background:rgba(0,35,149,0.22);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,0.12);box-shadow:0 4px 20px rgba(0,0,0,0.12)}
+.brand{display:flex;align-items:center;gap:10px}
+.brand-logo{height:32px;object-fit:contain;display:block}
+.brand-icon{width:36px;height:36px;border-radius:8px;background:linear-gradient(135deg,#FF9933,#fff 50%,#138808);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.brand-text{display:flex;flex-direction:column;line-height:1.1}
+.brand-name{font-family:'Yatra One',cursive;font-size:18px;background:linear-gradient(90deg,#FF9933 0%,#FF9933 30%,#ffffff 48%,#ffffff 52%,#138808 70%,#138808 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.brand-tag{font-size:9px;color:rgba(255,255,255,0.5);letter-spacing:.12em;text-transform:uppercase}
+.nav-links{display:flex;align-items:center;gap:2px}
+.nl{padding:7px 12px;font-size:13px;color:rgba(255,255,255,0.75);border:none;background:none;border-radius:6px;cursor:pointer;transition:all .18s;font-family:'DM Sans',sans-serif;white-space:nowrap}
+.nl:hover{color:#fff;background:rgba(255,255,255,0.12)}
+.nb{padding:7px 18px;font-size:13px;font-weight:600;color:#002395;background:#fff;border:none;border-radius:6px;cursor:pointer;transition:all .18s;margin-left:6px}
+.nb:hover{background:#f0f4ff}
+.upill{display:none;align-items:center;gap:7px;margin-left:8px;padding:4px 12px 4px 5px;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.28);border-radius:99px}
+.upill.show{display:flex}
+.uav{width:26px;height:26px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#002395}
+.unm{font-size:13px;font-weight:500;color:#fff}
+.ulg{font-size:12px;color:rgba(255,255,255,0.6);background:none;border:none;cursor:pointer;margin-left:2px}
+.ulg:hover{color:#fff}
+.ao{display:none}.ao.show{display:flex}
+
+/* HERO */
+.hl{width:100%;max-width:650px;padding:6rem 4rem;display:flex;flex-direction:column;justify-content:center}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;background:#EFF6FF;border:1px solid #BFDBFE;border-radius:99px;padding:5px 14px;font-size:12px;font-weight:500;color:#1D4ED8;margin-bottom:1.5rem;width:fit-content}
+.dot-pulse{width:8px;height:8px;border-radius:50%;background:#FF9933;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.4)}}
+.hero-p{font-size:1rem;color:var(--muted);max-width:420px;line-height:1.75;margin-bottom:2rem}
+.hbtns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:2.5rem}
+.bm{padding:12px 30px;font-size:14px;font-weight:600;color:#fff;background:#002395;border:none;border-radius:8px;cursor:pointer;transition:all .2s;box-shadow:0 4px 14px rgba(0,35,149,0.28)}
+.bm:hover{background:#0033cc;transform:translateY(-1px)}
+.bg2{padding:12px 30px;font-size:14px;font-weight:500;color:#002395;background:transparent;border:1.5px solid #002395;border-radius:8px;cursor:pointer;transition:all .2s}
+.bg2:hover{background:#EFF6FF}
+.stats{display:flex;gap:2.5rem}
+.st-v{font-size:22px;font-weight:700;color:#002395;font-family:'Yatra One',cursive}
+.st-l{font-size:11px;color:var(--muted);margin-top:2px}
+
+
+/* OVERLAYS */
+.ov{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,0.45);backdrop-filter:blur(5px);display:none;align-items:center;justify-content:center}
+.ov.show{display:flex}
+.card{width:420px;max-width:calc(100vw - 2rem);background:#fff;border-radius:14px;padding:34px 30px 30px;box-shadow:0 20px 60px rgba(0,35,149,0.2);position:relative;animation:ci .38s cubic-bezier(.34,1.56,.64,1) both}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;border-radius:14px 14px 0 0;background:linear-gradient(90deg,#002395,#0EA5E9)}
+@keyframes ci{from{opacity:0;transform:translateY(18px) scale(.97)}to{opacity:1;transform:scale(1) translateY(0)}}
+.cbtn{position:absolute;top:12px;right:12px;width:28px;height:28px;background:#F1F5F9;border:none;border-radius:6px;color:#64748B;font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.cbtn:hover{background:#E2E8F0}
+.ctitle{font-family:'Yatra One',cursive;font-size:24px;color:#002395;margin-bottom:20px;text-align:center}
+.field{position:relative;margin-bottom:11px}
+.field input,.field select{width:100%;height:46px;padding:0 44px 0 14px;background:var(--ibg);border:1.5px solid var(--iborder);border-radius:8px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:14px;outline:none;transition:border-color .2s,box-shadow .2s;appearance:none}
+.field input::placeholder{color:#9CA3AF}
+.field input:focus,.field select:focus{border-color:#002395;box-shadow:0 0 0 3px rgba(0,35,149,0.1)}
+.field input.err{border-color:#EF4444}
+.fiw{position:absolute;right:12px;top:50%;transform:translateY(-50%);display:flex;align-items:center;gap:4px}
+.fi{font-size:14px;color:#9CA3AF;pointer-events:none;line-height:1}
+.eb{background:none;border:none;cursor:pointer;padding:0;font-size:14px;color:#9CA3AF;line-height:1}
+.eb:hover{color:#002395}
+.fe{font-size:11px;color:#EF4444;margin-top:3px;padding-left:2px;display:none}
+.fe.show{display:block}
+.fl{font-size:11px;color:var(--muted);margin-bottom:5px;text-transform:uppercase;letter-spacing:.05em;font-weight:500}
+.sbtn{width:100%;height:48px;margin-top:6px;background:#002395;border:none;border-radius:8px;color:#fff;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:600;cursor:pointer;transition:all .2s}
+.sbtn:hover{background:#0033cc;transform:translateY(-1px)}
+.sbtn:disabled{opacity:.6;cursor:not-allowed;transform:none}
+.sw{text-align:center;font-size:13px;color:var(--muted);margin-top:14px}
+.sl{color:#002395;font-weight:600;cursor:pointer}
+.sl:hover{text-decoration:underline}
+
+/* TOAST */
+#toast{position:fixed;top:74px;left:50%;transform:translateX(-50%) translateY(-8px);z-index:400;padding:11px 18px;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:13.5px;font-weight:500;display:flex;align-items:center;gap:8px;opacity:0;transition:opacity .3s,transform .3s;pointer-events:none;white-space:nowrap;box-shadow:0 4px 18px rgba(0,0,0,0.15)}
+#toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+#toast.success{background:#10B981;color:#fff}
+#toast.error{background:#EF4444;color:#fff}
+
+.bg{
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  background-image:url('assets/Background.png');
+  background-size:cover;
+  background-position:80% center; /* 🔥 tweak this */
+  background-repeat:no-repeat;
+}
+</style>
+</head>
+<body>
+<div class="bg"></div> 
+<div id="toast"><span id="ti"></span><span id="tm"></span></div>
+
+<nav>
+  <div class="brand" onclick="closeAll()">
+    <img src="assets/Logo.png" class="brand-logo" alt="Udaan Bharat">
+    <div class="brand-text">
+      <span class="brand-name">Udaan Bharat</span>
+      <span class="brand-tag">Connecting India</span>
+    </div>
+  </div>
+  <div class="nav-links">
+    <button class="nl" onclick="openOv('search')">Book Flights</button>
+    <button class="nl ao" onclick="window.location.href='dashboard.html'">My Trips</button>
+    <button class="nl" onclick="toast('Web Check-in — coming soon!')">Web Check-in</button>
+    <button class="nl" onclick="toast('Manage Booking — coming soon!')">Manage Booking</button>
+    <button class="nb" id="nlb" onclick="openOv('login')">Login</button>
+    <div class="upill" id="up">
+      <div class="uav" id="ua"></div>
+      <span class="unm" id="un"></span>
+      <button class="ulg" onclick="logout()">✕</button>
+    </div>
+  </div>
+</nav>
+
+
+<!-- LOGIN -->
+<div class="ov" id="loginOv"><div class="card">
+  <button class="cbtn" onclick="closeAll()">✕</button>
+  <div class="ctitle">Welcome Back</div>
+  <div class="field"><input type="email" id="le" placeholder="Email address"/><div class="fiw"><span class="fi">✉️</span></div><div class="fe" id="lee"></div></div>
+  <div class="field"><input type="password" id="lp" placeholder="Password"/><div class="fiw"><button class="eb" onclick="eye('lp',this)">👁️</button></div><div class="fe" id="lpe"></div></div>
+  <button class="sbtn" id="lb" onclick="doLogin()">Login</button>
+  <p class="sw">Don't have an account? <span class="sl" onclick="openOv('register')">Register</span></p>
+</div></div>
+
+<!-- REGISTER -->
+<div class="ov" id="registerOv"><div class="card">
+  <button class="cbtn" onclick="closeAll()">✕</button>
+  <div class="ctitle">Create Account</div>
+  <div class="field"><input type="text" id="rn" placeholder="Full name"/><div class="fiw"><span class="fi">👤</span></div><div class="fe" id="rne"></div></div>
+  <div class="field"><input type="email" id="re" placeholder="Email address"/><div class="fiw"><span class="fi">✉️</span></div><div class="fe" id="ree"></div></div>
+  <div class="field"><input type="password" id="rp" placeholder="Password (min 6 chars)"/><div class="fiw"><button class="eb" onclick="eye('rp',this)">👁️</button></div><div class="fe" id="rpe"></div></div>
+  <button class="sbtn" id="rb" onclick="doRegister()">Register</button>
+  <p class="sw">Already have an account? <span class="sl" onclick="openOv('login')">Login</span></p>
+</div></div>
+
+<!-- SEARCH -->
+<div class="ov" id="searchOv"><div class="card" style="width:480px">
+  <button class="cbtn" onclick="closeAll()">✕</button>
+  <div class="ctitle">Search Flights</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
+    <div><div class="fl">From</div><div class="field" style="margin:0"><select id="sf"><option value="">Select city</option><option>Delhi (DEL)</option><option>Mumbai (BOM)</option><option>Bengaluru (BLR)</option><option>Chennai (MAA)</option><option>Kolkata (CCU)</option><option>Hyderabad (HYD)</option><option>Pune (PNQ)</option><option>Goa (GOI)</option></select></div></div>
+    <div><div class="fl">To</div><div class="field" style="margin:0"><select id="st"><option value="">Select city</option><option>Delhi (DEL)</option><option>Mumbai (BOM)</option><option>Bengaluru (BLR)</option><option>Chennai (MAA)</option><option>Kolkata (CCU)</option><option>Hyderabad (HYD)</option><option>Pune (PNQ)</option><option>Goa (GOI)</option></select></div></div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px">
+    <div><div class="fl">Date</div><div class="field" style="margin:0"><input type="date" id="sd"/></div></div>
+    <div><div class="fl">Passengers</div><div class="field" style="margin:0"><select id="sp"><option value="1">1 Adult</option><option value="2">2 Adults</option><option value="3">3 Adults</option></select></div></div>
+  </div>
+  <button class="sbtn" onclick="goSearch()">Search Flights ✈️</button>
+</div></div>
+
+<script>
+const API='http://localhost:8080/api/auth';
+let tt2;
+function toast(msg,type='success'){const t=document.getElementById('toast');document.getElementById('tm').textContent=msg;document.getElementById('ti').textContent=type==='success'?'✅':'❌';t.className=`show ${type}`;clearTimeout(tt2);tt2=setTimeout(()=>t.className='',3500)}
+function openOv(t){closeAll();document.getElementById(t+'Ov').classList.add('show')}
+function closeAll(){['login','register','search'].forEach(p=>document.getElementById(p+'Ov').classList.remove('show'));clearErrs()}
+window.addEventListener('click',e=>{if(e.target.classList.contains('ov'))closeAll()});
+function clearErrs(){document.querySelectorAll('.fe').forEach(e=>{e.textContent='';e.classList.remove('show')});document.querySelectorAll('.field input').forEach(i=>i.classList.remove('err'))}
+function showFE(id,msg){const el=document.getElementById(id);el.textContent=msg;el.classList.add('show');el.closest('.field')?.querySelector('input')?.classList.add('err')}
+function eye(id,btn){const i=document.getElementById(id);const s=i.type==='password';i.type=s?'text':'password';btn.textContent=s?'🙈':'👁️'}
+function save(t,n,e){localStorage.setItem('ub_token',t);localStorage.setItem('ub_name',n);if(e)localStorage.setItem('ub_email',e)}
+function clearSess(){['ub_token','ub_name','ub_email'].forEach(k=>localStorage.removeItem(k))}
+function getSess(){return{token:localStorage.getItem('ub_token'),name:localStorage.getItem('ub_name')}}
+function setIn(name){document.getElementById('nlb').style.display='none';document.getElementById('up').classList.add('show');document.getElementById('un').textContent=name;document.getElementById('ua').textContent=name.charAt(0).toUpperCase();document.querySelectorAll('.ao').forEach(el=>el.classList.add('show'))}
+function logout(){clearSess();document.getElementById('nlb').style.display='';document.getElementById('up').classList.remove('show');document.querySelectorAll('.ao').forEach(el=>el.classList.remove('show'));toast('Logged out.')}
+async function doRegister(){
+  clearErrs();
+  const n=document.getElementById('rn').value.trim(),e=document.getElementById('re').value.trim(),p=document.getElementById('rp').value;
+  const rx=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;let ok=true;
+  if(!n){showFE('rne','Name is required');ok=false}
+  if(!e||!rx.test(e)){showFE('ree','Enter a valid email');ok=false}
+  if(p.length<6){showFE('rpe','Minimum 6 characters');ok=false}
+  if(!ok)return;
+  const btn=document.getElementById('rb');btn.disabled=true;btn.textContent='Registering…';
+  try{const res=await fetch(`${API}/register`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:n,email:e,password:p})});const data=await res.json();if(!res.ok)toast(data.error||'Registration failed','error');else{toast('Registration successful! Please login 🎉');setTimeout(()=>openOv('login'),1800)}}
+  catch{toast('Cannot reach server. Is Spring Boot running?','error')}
+  finally{btn.disabled=false;btn.textContent='Register'}
+}
+async function doLogin(){
+  clearErrs();
+  const e=document.getElementById('le').value.trim(),p=document.getElementById('lp').value;
+  const rx=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;let ok=true;
+  if(!e||!rx.test(e)){showFE('lee','Enter a valid email');ok=false}
+  if(!p){showFE('lpe','Password is required');ok=false}
+  if(!ok)return;
+  const btn=document.getElementById('lb');btn.disabled=true;btn.textContent='Logging in…';
+  try{
+    const res=await fetch(`${API}/login`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:e,password:p})});
+    const data=await res.json();
+    if(!res.ok){
+      toast(data.error||'Invalid credentials','error');
+    } else {
+      save(data.token,data.name,e);
+      if(data.userId)localStorage.setItem('ub_userid',data.userId);
+      toast(`Welcome, ${data.name}! ✈️`);
+      setTimeout(()=>window.location.href='dashboard.html',900);
+    }
+  }catch(err){
+    toast('Cannot reach server. Is Spring Boot running?','error');
+  }finally{
+    btn.disabled=false;btn.textContent='Login';
+  }
+}
+function goSearch(){
+  const f=document.getElementById('sf').value,t=document.getElementById('st').value;
+  if(!f||!t){toast('Please select both cities','error');return}
+  if(f===t){toast('Origin and destination cannot be same','error');return}
+  const{token}=getSess();
+  if(!token){toast('Please login to search flights','error');setTimeout(()=>openOv('login'),700);return}
+  closeAll();window.location.href='dashboard.html';
+}
+document.getElementById('sd').min=new Date().toISOString().split('T')[0];
+document.getElementById('lp').addEventListener('keydown',e=>{if(e.key==='Enter')doLogin()});
+document.getElementById('rp').addEventListener('keydown',e=>{if(e.key==='Enter')doRegister()});
+(async function(){
+  const{token,name}=getSess();
+  if(!token||!name)return;
+  try{
+    const res=await fetch('http://localhost:8080/api/auth/me',{
+      headers:{'Authorization':'Bearer '+token}
+    });
+    if(res.ok){setIn(name)}
+    else{clearSess()}
+  }catch(e){clearSess()}
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-AirlineApplication<airline>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.udaanbharat.airline.AirlineApplication",
+            "projectName": "airline",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
